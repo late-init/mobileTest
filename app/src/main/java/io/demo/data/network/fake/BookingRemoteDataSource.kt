@@ -9,6 +9,7 @@ import io.demo.data.network.model.NetworkBooking
 import io.demo.log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class BookingRemoteDataSource @Inject constructor(
   @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,
   private val json: Json,
 ) : NetworkDataSource {
+  @OptIn(ExperimentalSerializationApi::class)
   override suspend fun getBooking(): NetworkBooking {
     val result: NetworkBooking = withContext(ioDispatcher) {
       context.assets.open(BOOKING_ASSET).use { inputStream ->
