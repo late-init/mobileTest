@@ -2,7 +2,7 @@ package io.demo
 
 import android.util.Log
 
-private val TAG = "MobileTest"
+private const val TAG = "MobileTest"
 
 fun log(content: String) {
   Log.d(TAG, content)

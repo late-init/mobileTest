@@ -23,7 +23,7 @@ class OfflineBookingRepository @Inject constructor(
     return bookingDao.getBookings()
       .map { list -> list.map { it.asExternalModel() } }
       .onEach {
-        log("cache data: ${it}")
+        log("cache data: $it")
       }
       .catch {
         emit(emptyList())
@@ -35,7 +35,7 @@ class OfflineBookingRepository @Inject constructor(
     try {
       // only for test, minus 1 from assets booking.json's expiryTime
       // to keep it valid
-      val now = 1722409261 - 1;
+      val now = FAKE_NOW - 1
       val bookingEntity = bookingDao.getBookings().first().firstOrNull()
       val isExpired = bookingEntity?.expiryTime?.toLong()?.let {
         now >= it
@@ -53,5 +53,7 @@ class OfflineBookingRepository @Inject constructor(
     }
   }
 
-
+  companion object {
+    private const val FAKE_NOW: Long = 1722409261
+  }
 }

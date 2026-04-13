@@ -7,7 +7,4 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 @Retention(RUNTIME)
 annotation class Dispatcher(val dispatcher: DemoDispatchers)
 
-enum class DemoDispatchers {
-  Default,
-  IO,
-}
+enum class DemoDispatchers { Default, IO, }
