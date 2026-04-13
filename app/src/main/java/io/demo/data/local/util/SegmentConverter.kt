@@ -6,14 +6,14 @@ import kotlinx.serialization.json.Json
 
 class SegmentConverter {
 
-    @TypeConverter
-    fun fromSegments(list: List<Segment>): String {
-        return Json.encodeToString(list)
-    }
+  @TypeConverter
+  fun fromSegments(list: List<Segment>): String {
+    return Json.encodeToString(list)
+  }
 
-    @TypeConverter
-    fun toSegments(json: String): List<Segment> {
-        return Json.decodeFromString(json)
-    }
+  @TypeConverter
+  fun toSegments(json: String): List<Segment> {
+    return Json.decodeFromString(json)
+  }
 
 }

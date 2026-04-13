@@ -12,25 +12,24 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import javax.inject.Inject
-import kotlin.io.use
 
 class BookingRemoteDataSource @Inject constructor(
-    @ApplicationContext private val context: Context,
-    @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,
-    private val json: Json,
+  @ApplicationContext private val context: Context,
+  @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,
+  private val json: Json,
 ) : NetworkDataSource {
-    override suspend fun getBooking(): NetworkBooking {
-        val result: NetworkBooking = withContext(ioDispatcher) {
-            context.assets.open(BOOKING_ASSET).use { inputStream ->
-                json.decodeFromStream(inputStream)
-            }
-        }
-        log("Network: mock get from network")
-        log("network data: $result")
-        return result
+  override suspend fun getBooking(): NetworkBooking {
+    val result: NetworkBooking = withContext(ioDispatcher) {
+      context.assets.open(BOOKING_ASSET).use { inputStream ->
+        json.decodeFromStream(inputStream)
+      }
     }
+    log("Network: mock get from network")
+    log("network data: $result")
+    return result
+  }
 
-    companion object {
-        private const val BOOKING_ASSET = "booking.json"
-    }
+  companion object {
+    private const val BOOKING_ASSET = "booking.json"
+  }
 }

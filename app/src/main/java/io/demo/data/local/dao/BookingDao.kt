@@ -12,16 +12,16 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BookingDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(ticket: BookingEntity)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insert(ticket: BookingEntity)
 
-    @Update
-    suspend fun update(ticket: BookingEntity)
+  @Update
+  suspend fun update(ticket: BookingEntity)
 
-    @Delete
-    suspend fun delete(ticket: BookingEntity)
+  @Delete
+  suspend fun delete(ticket: BookingEntity)
 
-    @Query("SELECT * from booking")
-    fun getBookings(): Flow<List<BookingEntity>>
+  @Query("SELECT * from booking")
+  fun getBookings(): Flow<List<BookingEntity>>
 
 }

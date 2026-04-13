@@ -5,21 +5,21 @@ import io.demo.data.network.model.NetworkBooking
 import io.demo.data.network.model.Segment
 
 data class Booking(
-    val expiryTime: String,
-    val segments: List<Segment>
+  val expiryTime: String,
+  val segments: List<Segment>
 )
 
 fun NetworkBooking.asEntity() = BookingEntity(
-    shipReference = shipReference,
-    shipToken = shipToken,
-    canIssueTicketChecking = canIssueTicketChecking,
-    expiryTime = expiryTime,
-    duration = duration,
-    segments = segments
+  shipReference = shipReference,
+  shipToken = shipToken,
+  canIssueTicketChecking = canIssueTicketChecking,
+  expiryTime = expiryTime,
+  duration = duration,
+  segments = segments
 )
 
 fun BookingEntity.asExternalModel() = Booking(
-    expiryTime = expiryTime,
-    segments = segments,
+  expiryTime = expiryTime,
+  segments = segments,
 )
 

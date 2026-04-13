@@ -10,8 +10,8 @@ import io.demo.data.local.dao.BookingDao
 @Module
 @InstallIn(SingletonComponent::class)
 object DaosModule {
-    @Provides
-    fun providesBookingDao(
-        database: BookingDatabase
-    ): BookingDao = database.bookingDao()
+  @Provides
+  fun providesBookingDao(
+    database: BookingDatabase
+  ): BookingDao = database.bookingDao()
 }

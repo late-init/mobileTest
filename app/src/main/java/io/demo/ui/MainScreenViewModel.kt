@@ -17,27 +17,27 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val bookingRepository: BookingRepository
+  private val bookingRepository: BookingRepository
 ) : ViewModel() {
 
-    val uiState: StateFlow<MainUiState> = bookingRepository.getBookings()
-        .map<List<Booking>, MainUiState> { list ->
-            MainUiState.Success(list.mapToBookingInfo().flatMap { it.trips })
-        }
-        .catch {
-            emit(MainUiState.Error)
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = MainUiState.Loading
-        )
-
-    fun refresh() {
-        log("perform refresh")
-        viewModelScope.launch {
-            bookingRepository.refresh()
-        }
+  val uiState: StateFlow<MainUiState> = bookingRepository.getBookings()
+    .map<List<Booking>, MainUiState> { list ->
+      MainUiState.Success(list.mapToBookingInfo().flatMap { it.trips })
     }
+    .catch {
+      emit(MainUiState.Error)
+    }
+    .stateIn(
+      scope = viewModelScope,
+      started = SharingStarted.WhileSubscribed(5_000),
+      initialValue = MainUiState.Loading
+    )
+
+  fun refresh() {
+    log("perform refresh")
+    viewModelScope.launch {
+      bookingRepository.refresh()
+    }
+  }
 
 }

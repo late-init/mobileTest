@@ -10,6 +10,6 @@ import io.demo.data.network.fake.BookingRemoteDataSource
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DataSourceModule {
-    @Binds
-    abstract fun bindsNetworkDataSource(impl: BookingRemoteDataSource): NetworkDataSource
+  @Binds
+  abstract fun bindsNetworkDataSource(impl: BookingRemoteDataSource): NetworkDataSource
 }

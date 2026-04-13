@@ -13,18 +13,18 @@ import io.demo.ui.MainScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MainScreen(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding()
-                    .navigationBarsPadding()
-            )
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+    setContent {
+      MainScreen(
+        modifier = Modifier
+          .fillMaxSize()
+          .statusBarsPadding()
+          .navigationBarsPadding()
+      )
     }
+  }
 }
 
 

@@ -10,6 +10,6 @@ import io.demo.data.repository.OfflineBookingRepository
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
-    @Binds
-    abstract fun bindsBookingRepository(impl: OfflineBookingRepository): BookingRepository
+  @Binds
+  abstract fun bindsBookingRepository(impl: OfflineBookingRepository): BookingRepository
 }
