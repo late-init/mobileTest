@@ -43,7 +43,12 @@ class OfflineBookingRepository @Inject constructor(
       log("local cache is ${if (isExpired) "invalid" else "valid"}.")
       if (isExpired) {
         val networkBooking = networkDataSource.getBooking()
-        bookingDao.insert(networkBooking.asEntity())
+        val newBookingEntity = networkBooking.asEntity()
+        if (bookingEntity != null && bookingEntity.shipReference != newBookingEntity.shipReference) {
+          bookingDao.syncBooking(bookingEntity, newBookingEntity)
+        } else {
+          bookingDao.insert(newBookingEntity)
+        }
       }
     } catch (e: Exception) {
       if (e is CancellationException) {
